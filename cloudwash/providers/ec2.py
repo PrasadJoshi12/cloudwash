@@ -59,7 +59,7 @@ def cleanup(**kwargs):
                 logger.info(f"Skipped VMs: \n{avms['skip']}")
         if kwargs["nics"] or kwargs["_all"]:
             rnics = dry_nics()
-            if not is_dry_run:
+            if not is_dry_run and kwargs["nics"]:
                 ec2_client.remove_all_unused_nics()
                 logger.info(f"Removed NICs: \n{rnics}")
         if kwargs["discs"] or kwargs["_all"]:

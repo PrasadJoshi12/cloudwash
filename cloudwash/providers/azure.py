@@ -82,7 +82,7 @@ def cleanup(**kwargs):
                 logger.info(f"Skipped VMs: \n{avms['skip']}")
         if kwargs["nics"] or kwargs["_all"]:
             rnics = dry_nics()
-            if not is_dry_run:
+            if not is_dry_run and kwargs["nics"]:
                 azure_client.remove_nics_by_search()
                 logger.info(f"Removed NICs: \n{rnics}")
         if kwargs["discs"] or kwargs["_all"]:
